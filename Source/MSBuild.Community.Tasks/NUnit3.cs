@@ -60,8 +60,7 @@ namespace MSBuild.Community.Tasks
         /// The default relative path of the NUnit installation.
         /// The value is <c>@"NUnit 2.4\bin"</c>.
         /// </summary>
-        public const string DEFAULT_NUNIT_DIRECTORY = @"NUnit.org\bin";
-        private const string InstallDirKey = @"HKEY_CURRENT_USER\Software\nunit.org\Nunit\2.6.3";
+        public const string DEFAULT_NUNIT_DIRECTORY = @"NUnit.org\bin";        
 
         #endregion Constants
 
@@ -531,20 +530,9 @@ namespace MSBuild.Community.Tasks
                 ToolPath = nunitPath;
                 return;
             }
+            
+            nunitPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles), DEFAULT_NUNIT_DIRECTORY);          
 
-            nunitPath = Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles);
-            nunitPath = Path.Combine(nunitPath, DEFAULT_NUNIT_DIRECTORY);
-
-            try
-            {
-                string value = Registry.GetValue(InstallDirKey, "InstallDir", nunitPath) as string;
-                if (!string.IsNullOrEmpty(value))
-                    nunitPath = Path.Combine(value, "bin");
-            }
-            catch (Exception ex)
-            {
-                Log.LogErrorFromException(ex);
-            }
             ToolPath = nunitPath;
 
         }
