@@ -73,6 +73,7 @@
     <Compile Include="ByteDescriptions.cs" />
     <Compile Include="Computer\Computer.cs" />
     <Compile Include="Beep\Beep.cs" />
+    <Compile Include="NUnit3.cs" />
     <Compile Include="DeleteTree.cs" />
     <Compile Include="DependencyGraph\DependencyGraph.cs" />
     <Compile Include="DependencyGraph\ProjectFileParser.cs" />
